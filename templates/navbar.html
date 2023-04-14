@@ -1,0 +1,27 @@
+<header>
+  <h2 class="logo">WLC</h2>
+  <nav class="navigation">
+    <a href="{{ url_for ('index') }}" class="active">Home</a>
+
+    {% if not user %}
+
+    <a href="{{ url_for ('login_get') }}" id="hide-log">Login</a>
+    <style>
+      #hide-logout,
+      #hide-register {
+        display: none;
+      }
+
+      .logo {
+        margin-right: 24rem;
+      }
+    </style>
+    {% endif %} {% if is_admin %}
+    <a href="{{ url_for ('private') }}">Register</a>
+    {% endif %}
+    <a href="{{ url_for ('logout')}}" id="hide-logout">Logout</a>
+
+    <a href="#" onclick="scrollDown()">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>

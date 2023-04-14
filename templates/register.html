@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+
+<body>
+  {% include "navbar.html" %}
+
+  <div class="landing" id="land">
+    <img src="{{ url_for('static', path='images/hill1.png')}}" id='hill1' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill2.png')}}" id='hill2' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill3.png')}}" id='hill3' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill4.png')}}" id='hill4' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill5.png')}}" id='hill5' alt='#'></img>
+    <img src="{{ url_for('static', path='images/tree.png')}}" id='tree' alt='#'></img>
+    <div class="container">
+
+      <form method="post" class="form" action="/auth/register">
+        <input type="text" placeholder="Username" name="username" />
+        <input type="password" placeholder="Password" name="password" />
+        <Input type="password" placeholder="ConfirmPassword" name="confirmpassword" />
+
+        <button id="login-btn" type="submit">Login</button>
+      </form>
+    </div>
+
+    <img src="{{ url_for('static', path='images/leaf.png')}}" id='leaf' alt='#'></img>
+    <img src="{{ url_for('static', path='images/plant.png')}}" id='plant' alt='#'></img>
+  </div>
+
+  {% include "scripts.html" %}
+</body>
+
+</html>

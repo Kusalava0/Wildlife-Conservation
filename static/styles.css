@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-family: "McLaren", cursive;
+
+}
+
+/* 
+.root {
+    background-image: url("../src/images/animal.png");
+
+} */
+
+body {
+    background: #f9f9f9;
+    font-family: "Source Sans Pro", sans-serif;
+    /* color: white; */
+    width: 100vw;
+    min-height: 100vh;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+header {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #359381;
+    pointer-events: none;
+    font-weight: bold;
+    margin-right: 18rem;
+}
+
+.navigation a,
+.live-a a {
+    text-decoration: none;
+    color: #359381;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+
+
+.navigation a:hover,
+.navigation a.active {
+    background: #359381;
+    color: #ffffff;
+}
+
+.live-a a:hover,
+.live-a a.active {
+    background: black;
+    color: #fff
+}
+
+.landing {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#text {
+    position: absolute;
+    font-size: 5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+
+.landing img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.sec-text {
+    /* margin-top: 7rem; */
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.sec {
+    position: relative;
+    background: #003329;
+    padding: 100px;
+}
+
+.sec p {
+    font-size: 1rem;
+    color: #fff;
+}
+
+/* login and register page styles */
+/* position: absolute;
+font-size: 5rem;
+color: #fff;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, .2); */
+
+
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10% auto;
+    padding: 80px 0;
+    text-align: center;
+
+}
+
+.container h1 {
+    font-size: 40px;
+    font-weight: 200;
+}
+
+form {
+    position: absolute;
+    padding: 20px 0;
+}
+
+form input {
+    border: 1px solid rgba(252, 252, 252, 0.4);
+    background-color: rgba(252, 252, 252, 0.2);
+    width: 250px;
+    border-radius: 3px;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+}
+
+form button {
+    appearance: none;
+    outline: 0;
+    background-color: white;
+    border: 0;
+    padding: 10px 15px;
+    color: #50a3a2;
+    border-radius: 3px;
+    width: 250px;
+    font-size: 18px;
+    font-family: "McLaren", cursive;
+
+}
