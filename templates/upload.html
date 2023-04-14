@@ -1,6 +1,6 @@
 <div class="upload-form">
 
-    <h1>Upload Video</h1>
+    <h2 id='text'>Upload Video</h2>
     <form action="/upload_video" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Title:</label>
@@ -10,7 +10,7 @@
             <label for="video">Video:</label>
             <input type="file" id="video" name="video" accept="video/*" required>
         </div>
-        <button type="submit">Upload</button>
+        <button type="submit" id="login-btn">Upload</button>
     </form>
     <div class="card w-75 live-a">
         <div class="card-body">
@@ -29,11 +29,12 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        height: 6.875rem;
     }
 
     .upload-form form {
         position: absolute;
-        left: 80px;
-        margin-bottom: 720px;
+        justify-content: center;
+        margin-bottom: 960px;
     }
 </style>

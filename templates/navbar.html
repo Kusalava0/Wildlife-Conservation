@@ -18,7 +18,17 @@
     </style>
     {% endif %} {% if is_admin %}
     <a href="{{ url_for ('private') }}">Register</a>
+    <style>
+      .logo {
+        margin-right: 18rem;
+      }
+    </style>
     {% endif %}
+    <!-- <style>
+      .logo {
+        margin-right: 24rem;
+      }
+    </style> -->
     <a href="{{ url_for ('logout')}}" id="hide-logout">Logout</a>
 
     <a href="#" onclick="scrollDown()">About</a>

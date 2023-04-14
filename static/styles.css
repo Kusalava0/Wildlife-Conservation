@@ -36,12 +36,34 @@ header {
     z-index: 100;
 }
 
+#footer {
+    margin: 0;
+    text-align: center;
+    background-color: #393E46;
+}
+
+.fa-2x {
+    padding-bottom: 2%;
+    padding-right: 1%;
+    color: #D8E3E7;
+}
+
+.fa-2x:hover {
+    color: #AAD8D3;
+}
+
+.contact {
+    padding-top: 3%;
+    padding-bottom: 1%;
+    margin: 0;
+}
+
 .logo {
     font-size: 2rem;
     color: #359381;
     pointer-events: none;
     font-weight: bold;
-    margin-right: 18rem;
+    margin-right: 24rem;
 }
 
 .navigation a,
@@ -54,7 +76,11 @@ header {
     font-weight: 600;
 }
 
-
+.live-a {
+    /* margin-bottom: 15rem; */
+    bottom: 12rem;
+    background-color: rgba(252, 252, 252, 0.540);
+}
 
 .navigation a:hover,
 .navigation a.active {
@@ -78,10 +104,12 @@ header {
 
 #text {
     position: absolute;
-    font-size: 5rem;
+    font-size: 4.5rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
 }
+
+#leaf {}
 
 .landing img {
     position: absolute;

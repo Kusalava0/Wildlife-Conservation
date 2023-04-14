@@ -15,8 +15,8 @@ audio_file_path = 'police-operation-siren-144229.mp3'
 
 # Model
 # model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # or yolov5m, yolov5l, yolov5x, etc.
-model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/dkb03/Desktop/front/front-end-html/ml_model/md_v5a.0.0.pt')# custom trained model
-model_ppe = YOLO("C:/Users/dkb03/Desktop/front/front-end-html/ml_model/best.pt")
+model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/dkb03/Desktop/Wildlife-Conservation/ml_model/md_v5a.0.0.pt')# custom trained model
+model_ppe = YOLO("C:/Users/dkb03/Desktop/Wildlife-Conservation/ml_model/best.pt")
 
 
 def generate_frames(video_path):
@@ -123,7 +123,7 @@ def generate_frames(video_path):
             cv2.imwrite("output.jpg", frame)
             send_alert("output.jpg")
             
-            os.remove('C:/Users/dkb03/Desktop/front/front-end-html/output.jpg')
+            os.remove('C:/Users/dkb03/Desktop/Wildlife-Conservation/output.jpg')
             # print("------------------------SENT ALERT-----------------------------")
         # convert the frame to bytes
         ret, buffer = cv2.imencode('.jpg', frame)

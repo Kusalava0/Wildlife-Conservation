@@ -1,0 +1,20 @@
+<footer id="footer">
+    <div class="contact">
+        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="#"><i class="fas fa-envelope fa-2x"></i></a>
+        <p>© Copyright @
+        <h6 id="current-year"></h6> Wildlife Conservation</p>
+    </div>
+    <script>
+        function getCurrentYear() {
+            const currentYear = new Date().getFullYear();
+            const yearElement = document.getElementById('current-year');
+            yearElement.innerHTML = currentYear;
+        }
+        window.addEventListener('load', getCurrentYear);
+
+    </script>
+
+</footer>

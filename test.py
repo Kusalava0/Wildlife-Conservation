@@ -29,7 +29,7 @@ def send_alert(img_path):
     gmail.send(
         subject="Intruder Alert",
         sender=gmail_user_name,
-        receivers=["gurramakhileshwar333@gmail.com", "naveenlingala1212@gmail.com"],
+        receivers=["akhileshwar333@gmail.com", "rockingnaveen12@gmail.com"],
         html="""
             <h1>Unauthorized Person found!</h1>
             {{ myimg }}
