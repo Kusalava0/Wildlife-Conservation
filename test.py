@@ -21,7 +21,7 @@ def send_alert(img_path):
     # client.run(discord_token)  # Starts up the bot
 
     # Send an email
-    gmail.user_name = gmail_user_name
+    gmail.username = gmail_user_name
     gmail.password = gmail_password
 
     gmail.send(
