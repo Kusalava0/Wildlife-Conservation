@@ -11,12 +11,15 @@ from PIL import Image
 import time
 # specify the path of the audio file
 audio_file_path = 'police-operation-siren-144229.mp3'
+import datetime
 
-
+intial = 0
 # Model
 # model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # or yolov5m, yolov5l, yolov5x, etc.
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/dkb03/Desktop/Wildlife-Conservation/ml_model/md_v5a.0.0.pt')# custom trained model
 model_ppe = YOLO("C:/Users/dkb03/Desktop/Wildlife-Conservation/ml_model/best.pt")
+model_ani = YOLO("C:/Users/dkb03/Desktop/Wildlife-Conservation/ml_model/Re_best.pt")
+
 
 
 def generate_frames(video_path):
@@ -27,6 +30,18 @@ def generate_frames(video_path):
     # Initialize the list to store the frames
     classNames = ['Hardhat', 'Mask', 'NO-Hardhat', 'NO-Mask', 'NO-Safety Vest', 'Person', 'Safety Cone',
                 'Safety Vest', 'machinery', 'vehicle']
+    classAniNames = ["Person",
+            "Elephant",
+            "Leopard",
+            "Arctic_Fox",
+            "Chimpanzee",
+            "Jaguar",
+            "Lion",
+            "Orangutan",
+            "Panda",
+            "Panther",
+            "Rhino",
+            "Cheetah"]
     # Loop through the frames of the video
     while cap.isOpened():
         # Read the next frame
@@ -39,6 +54,7 @@ def generate_frames(video_path):
         result = model(frame)
         # iterate through each box and label in the result tensor
         cropped_img = []
+        cropped_animal = []
         for box in result.xyxy[0]:
             # extract the box coordinates and label index
             x1, y1, x2, y2, confidence, label_idx = box.tolist()
@@ -55,6 +71,7 @@ def generate_frames(video_path):
                 # add the class label and confidence score to the box
                 label = f"{class_label}: {confidence:.2f}"
                 cv2.putText(frame, label, (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, thickness)
+                cropped_animal.append(frame[y1:y2, x1:x2])
             else:
                 # Add Cropped people images
                 cropped_img.append(frame[y1:y2, x1:x2])
@@ -62,6 +79,7 @@ def generate_frames(video_path):
             # print the box coordinates and class label
             print(f"Box: ({x1},{y1}) - ({x2},{y2}), Class: {class_label}, Confidence: {confidence}")
         
+        alert_required = False
         for box_img in cropped_img:
             
             results = model_ppe(box_img)
@@ -69,7 +87,7 @@ def generate_frames(video_path):
             unique_labels = {}
 
             # iterate through the list of tuples
-            alert_required = False
+            
             for box in results[0].boxes:
 
                 cls = int(box.cls[0])
@@ -107,31 +125,58 @@ def generate_frames(video_path):
                     # Alert
                     print('-----------------------Alert-----------------------')
                     # play the audio file
+
                     alert_required = True
-
+                    cvzone.putTextRect(box_img, f'{classNames[cls]} {conf}',
+                                (max(0, x1), max(35, y1)), scale=1, thickness=1,colorB=myColor,
+                                colorT=(255,255,255),colorR=(0,0,255), offset=5)
+                    cv2.rectangle(box_img, (x1, y1), (x2, y2), myColor, 3)
                     # playsound(audio_file_path)
-                
-                # x1, y1, x2, y2 = get_original_coordinates(x1, y1, x2-x1, y2-y1, width_org, height_org)
-                cvzone.putTextRect(box_img, f'{classNames[cls]} {conf}',
-                                    (max(0, x1), max(35, y1)), scale=1, thickness=1,colorB=myColor,
-                                    colorT=(255,255,255),colorR=myColor, offset=5)
-                cv2.rectangle(box_img, (x1, y1), (x2, y2), myColor, 3)
+        prev = ''
+        for box_img in cropped_animal: 
+            results = model_ani(box_img)
+            for box in results[0].boxes:
+                x1, y1, x2, y2 = box.xyxy[0]
+                x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+                w, h = x2 - x1, y2 - y1
 
+                # Confidence
+                conf = math.ceil((box.conf[0] * 100)) / 100
+                # Class Name
+                cls = int(box.cls[0])
+                currentClass = classAniNames[cls]
+                print(currentClass)
+                myColor = (127,255,0)
+            
+                if prev == '':
+                    prev = currentClass
+                elif prev != currentClass:
+                    # Alert
+                    print('-----------------------Alert-----------------------')
+                    # play the audio file
+                    alert_required = True
+                    cvzone.putTextRect(box_img, f'{classAniNames[cls]} {conf}',
+                                (max(0, x1), max(35, y1)), scale=1, thickness=1,colorB=myColor,
+                                colorT=(255,255,255),colorR=(0,0,255), offset=5)
+                    cv2.rectangle(box_img, (x1, y1), (x2, y2), myColor, 3)
         
-            
-        if alert_required:
-            cv2.imwrite("output.jpg", frame)
-            send_alert("output.jpg")
-            
-            os.remove('C:/Users/dkb03/Desktop/Wildlife-Conservation/output.jpg')
-            # print("------------------------SENT ALERT-----------------------------")
-        # convert the frame to bytes
         ret, buffer = cv2.imencode('.jpg', frame)
         frame_bytes = buffer.tobytes()
 
         # # yield the frame bytes to the generator
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')  
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+        
+        global intial  
+        if alert_required and (intial == 0 or (datetime.datetime.now() - intial).total_seconds() > 30) :
+            cv2.imwrite("output.jpg", frame)
+            send_alert("output.jpg")  
+            intial = datetime.datetime.now()
+            
+            os.remove('C:/Users/dkb03/Desktop/Wildlife-Conservation/output.jpg')
+            # print("------------------------SENT ALERT-----------------------------")
+        # convert the frame to bytes
+          
         # cv2.imshow("Result", frame)
 
         # # # wait for a key press and check if the user wants to quit

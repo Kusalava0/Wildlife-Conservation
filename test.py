@@ -2,7 +2,6 @@ import discord
 from redmail import gmail
 import pandas as pd
 
-discord_token = "MTA5NjIxNDY4OTI0NTA1NzA5Ng.GbaOfg.RNRmFcDAYmwf-x10XXJnvbZE5h3vbfiyTzrY8I"
 gmail_user_name = "astracode7@gmail.com"
 gmail_password = "crvbbmmtvwctlogp"
 
@@ -10,7 +9,6 @@ def send_alert(img_path):
     message = "Animal intruder found!!"
     
     # Send message in Discord channel
-    client = discord.Client(intents=discord.Intents.default())
 
     # @client.event
     # async def on_ready():  #  Called when internal cache is loaded
@@ -31,7 +29,7 @@ def send_alert(img_path):
         sender=gmail_user_name,
         receivers=["akhileshwar333@gmail.com", "rockingnaveen12@gmail.com"],
         html="""
-            <h1>Unauthorized Person found!</h1>
+            <h1>Unauthorized entity found!</h1>
             {{ myimg }}
         """,
         body_images={"myimg": img_path}

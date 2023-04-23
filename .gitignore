@@ -2,6 +2,7 @@ rajkot_hack/
 ml_model/
 rajkot/
 videos/
+detect_old.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

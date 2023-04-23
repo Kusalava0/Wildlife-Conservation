@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Webcam Stream</title>
-  </head>
-  <body>
-    <img src="{{ url_for('video_feed') }}" width="640" height="480">
-  </body>
+
+{% include "header.html" %}
+
+<body>
+  {% include "navbar.html" %}
+  <img src="{{ url_for('video_feed') }}" width="640" height="480">
+  <style>
+    img {
+      display: flex;
+      justify-content: center;
+      margin-top: 6rem;
+      margin-left: 24rem;
+    }
+  </style>
+</body>
+{% include "footer.html" %}
+{% include "scripts.html" %}
+
 </html>
