@@ -193,10 +193,16 @@ async def video_feed():
 
 @app.route('/feed', methods=['GET', 'POST'])
 async def feed_page(request: Request):
+    is_admin = False
+    try:
+        user = await get_current_user_from_cookie(request)
+        is_admin = user.is_admin
+    except:
+        user = None
     if request.method == "GET":
         global video_path
         video_path = 0 
-    return templates.TemplateResponse("feed.html", {"request": request})
+    return templates.TemplateResponse("feed.html", {"request": request, "user": user, "is_admin": is_admin})
 
 
 @app.post('/upload_video')

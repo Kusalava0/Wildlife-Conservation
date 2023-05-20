@@ -35,7 +35,13 @@
     });
     function scrollDown() {
         window.scrollBy({
-            top: window.innerHeight,
+            top: (window.innerHeight),
+            behavior: 'smooth'
+        });
+    }
+    function scrollDownToContact() {
+        window.scrollBy({
+            top: (window.innerHeight + 1000),
             behavior: 'smooth'
         });
     }

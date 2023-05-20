@@ -5,13 +5,31 @@
 
 <body>
   {% include "navbar.html" %}
-  <img src="{{ url_for('video_feed') }}" width="640" height="480">
+  <div class="landing" id="land">
+
+    <img src="{{ url_for('static', path='images/hill1.png')}}" id='hill1' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill2.png')}}" id='hill2' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill3.png')}}" id='hill3' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill4.png')}}" id='hill4' alt='#'></img>
+    <img src="{{ url_for('static', path='images/hill5.png')}}" id='hill5' alt='#'></img>
+    <img src="{{ url_for('static', path='images/tree.png')}}" id='tree' alt='#'></img>
+    <img src="{{ url_for('static', path='images/leaf.png')}}" id='leaf' alt='#'></img>
+    <img src="{{ url_for('static', path='images/plant.png')}}" id='plant' alt='#'></img>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480" id="video">
+
+  </div>
   <style>
-    img {
-      display: flex;
-      justify-content: center;
+    #footer {
       margin-top: 6rem;
-      margin-left: 24rem;
+    }
+
+    #video {
+      width: 1200px;
+      height: 720px;
+      margin-top: 6rem;
+      margin-left: 8.75rem;
+      border-radius: 10%;
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     }
   </style>
 </body>

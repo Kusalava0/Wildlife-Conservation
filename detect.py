@@ -170,7 +170,7 @@ def generate_frames(video_path):
         global intial  
         if alert_required and (intial == 0 or (datetime.datetime.now() - intial).total_seconds() > 30) :
             cv2.imwrite("output.jpg", frame)
-            send_alert("output.jpg")  
+            # send_alert("output.jpg")  
             intial = datetime.datetime.now()
             
             os.remove('C:/Users/dkb03/Desktop/Wildlife-Conservation/output.jpg')

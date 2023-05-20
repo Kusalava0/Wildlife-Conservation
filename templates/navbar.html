@@ -1,7 +1,7 @@
 <header>
   <h2 class="logo">WLC</h2>
   <nav class="navigation">
-    <a href="{{ url_for ('index') }}" class="active">Home</a>
+    <a href="{{ url_for ('index') }}">Home</a>
 
     {% if not user %}
 
@@ -32,6 +32,6 @@
     <a href="{{ url_for ('logout')}}" id="hide-logout">Logout</a>
 
     <a href="#" onclick="scrollDown()">About</a>
-    <a href="#">Contact</a>
+    <a href="#" onclick="scrollDownToContact()">Contact</a>
   </nav>
 </header>
